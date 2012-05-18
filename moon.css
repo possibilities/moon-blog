@@ -1,0 +1,30 @@
+/* CSS declarations go here */
+
+h1 {
+	font-family: 'Lobster', Georgia, Times, serif;
+	font-size: 70px;
+	line-height: 100px;
+}
+ 
+h2 {
+	font-family: 'Cabin', Helvetica, Arial, sans-serif;
+	margin-bottom: 10px;
+}
+ 
+p {
+	font-family: 'Cabin', Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	line-height: 25px;
+}
+
+p.subtitle {
+  margin-top: -12px;
+	font-size: 15px;
+	font-style: italic;
+}
+
+.story-stamp {
+  font-color: grey;
+	font-size: 13px;
+	line-height: 25px;
+}
