@@ -15,8 +15,3 @@ Template.blog.storyList = function() {
 Template.story.publishedAt = function() {
   return moment(new Date(this.publishedAt)).format('MMMM do YYYY');
 };
-
-// To override a template you have to pull in the supporting methods
-// TODO: Figure out how to not need this
-Template.signInActivator.currentUser = UserSessionHelpers.currentUser;
-Template.signInActivator.events = Template.createSessionActivator.events;
