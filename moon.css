@@ -4,6 +4,7 @@ h1 {
 	font-family: 'Lobster', Georgia, Times, serif;
 	font-size: 70px;
 	line-height: 100px;
+	margin-top: 15px;
 }
  
 h2 {
@@ -18,7 +19,9 @@ p {
 }
 
 p.subtitle {
-  margin-top: -12px;
+  margin-left: 3.5em;
+  margin-top: -10px;
+  margin-bottom: 30px;
 	font-size: 15px;
 	font-style: italic;
 }
@@ -27,4 +30,15 @@ p.subtitle {
   font-color: grey;
 	font-size: 13px;
 	line-height: 25px;
+	margin-bottom: 15px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.admin {
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }

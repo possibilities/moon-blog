@@ -5,20 +5,52 @@
 </head>
 
 <body>
-  {{> layout}}
+  {{> blog}}
+  {{> admin}}
 </body>
 
-<template name="layout">
+<template name="blog">
   <div class="container">
-    <h1>Moon</h1>
-    <p class="subtitle">Mike Bannister's Meteor Blog</p>
-    <hr />
-    <div>
-      <h2>Moofy Marf Get Doof'd</h2>
-    </div>
-    <p class="clearfix">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    <p class="story-stamp pull-right">Posted <em>January 1st 2001</em> by <em>Mike Bannister</em></p>
+    {{#if blog}}
+      {{#with blog}}
+        <h1>{{title}}</h1>
+        <p class="subtitle">{{subtitle}}</p>
+      {{/with}}
+    {{/if}}
+
+    {{#each storyList}}
+      {{> story}}
+    {{/each}}
   </div>
+</template>
+
+<template name="story">
+  <div>
+    <h2>{{title}}</h2>
+  </div>
+  <p>
+    {{body}}
+  </p>
+  <p class="story-stamp pull-right">Posted <em>{{publishedAt}}</em> by <em>{{author}}</em></p>
+
+  <hr class="clearfix" />
+</template>
+
+<template name="admin">
+  <div class="admin">
+    {{> signInActivator}}
+  </div>
+</template>
+
+<template name="signInActivator">
+    {{#if currentUser}}
+      <div>
+        <input id="signOutButton" type="submit" value="Sign out" class="btn" />
+      </div>
+    {{else}}
+      <div>
+        <input id="createSessionActivator" type="submit" value="Sign in" class="btn" />
+      </div>
+    {{/if}}
+    {{> createSessionForm}}
 </template>
