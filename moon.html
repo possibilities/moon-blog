@@ -38,7 +38,57 @@
 
 <template name="admin">
   <div class="admin">
+    {{> preferencesActivator}}
     {{> createUserActivator}}
     {{> createSessionActivator}}
+  </div>
+</template>
+
+<template name="preferencesActivator">
+  {{#if currentUser}}
+    <input id="preferencesActivator" type="submit" value="Settings" class="modalActivator btn" data-modal-name="preferencesPane" />
+    {{> preferencesPane}}
+  {{/if}}
+</template>
+
+<template name="preferencesPane">
+  <div id="preferencesPane" class="modal hide fade">
+    <form style="display:inline" class="sessionForm">
+      <div class="modal-body">
+        <input name="csrfToken" type="hidden" value="TODO">
+        <button class="close" data-dismiss="modal">×</button>
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Blog</a></li>
+            <li><a href="#tab2" data-toggle="tab">Sources</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+              <div class="formElementGroup">
+                {{#with blog}}
+                  <div id="blogNameField" class="control-group">
+                    <label>Blog name</label>
+                    <input id="blogTitle" name="blogTitle" type="text" class="span3 entry focus" placeholder="Your blog's name…" value="{{title}}">
+                  </div>
+                  <div id="blogSubtitleField" class="control-group">
+                    <label>Subtitle</label>
+                    <input id="subtitleName" name="subtitleName" type="text" class="span3 entry" placeholder="Your blog's subtitle…" value="{{subtitle}}">
+                  </div>
+                {{/with}}
+              </div>
+            </div>
+            <div class="tab-pane" id="tab2">
+              <h3>GitHub Sources</h3>
+              {{#each sources}}
+                <p><em>{{user}}</em>/<strong>{{repo}}</strong></p>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn" data-dismiss="modal">Done</a>
+      </div>
+    </form>
   </div>
 </template>
