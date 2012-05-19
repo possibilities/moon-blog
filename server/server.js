@@ -1,11 +1,20 @@
+UserSessionConfiguration.signUpLimit = 1;
+
+StorySources = new Meteor.Collection('storySources');
 Stories = new Meteor.Collection('stories');
 Blog = new Meteor.Collection('blogs');
 
+Secure.noDataMagic('storySources');
 Secure.noDataMagic('stories');
 Secure.noDataMagic('blogs');
 
+StorySources.remove({});
 Stories.remove({});
 Blog.remove({});
+
+Meteor.publish('storySources', function() {
+  return StorySources.find();
+});
 
 Meteor.publish('stories', function() {
   return Stories.find();
@@ -20,16 +29,24 @@ Blog.insert({
   subtitle: "Mike Bannister's Meteor Blog"
 });
 
-Stories.insert({
-  title: "Moofy Marf Get Doof'd",
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  publishedAt: new Date(),
-  author: 'Mike Bannister'
+StorySources.insert({
+  user: "possibilities",
+  repo: "give-me-space"
 });
 
-Stories.insert({
-  title: "Woofy Dog Got a Cat",
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  publishedAt: new Date(),
-  author: 'Mike Bannister'
-});
+// Helpers
+
+BlogHelpers = {
+  loadFromGitHub: function() {
+    var source = StorySources.findOne();
+    var blogStories = new GitHubStories(source);
+    var stories = blogStories.stories();
+    _.each(stories, function(story) {
+      Stories.insert(story);
+    });
+  }
+};
+
+// Load blog data
+
+BlogHelpers.loadFromGitHub();
