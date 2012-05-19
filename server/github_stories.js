@@ -62,8 +62,10 @@ GitHubStories.prototype._prepareStory = function(rawStory) {
     author: commit.author.name
   }
 
-  if (rawStory.date)
+  if (rawStory.date) {
     story.publishedAt = new Date(rawStory.date);
+    story.publishedAtStamp = story.publishedAt.getTime();
+  }
 
   return story;
 };

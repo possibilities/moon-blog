@@ -19,11 +19,16 @@ Template.preferencesPane.sources = function() {
 };
 
 Template.blog.storyList = function() {
-  return Stories.find();
+  var params = {
+    sort: {
+      publishedAtStamp: -1
+    }
+  };
+  return Stories.find({}, params);
 };
 
 Template.story.publishedAt = function() {
-  return moment(new Date(this.publishedAt)).format('MMMM do YYYY');
+  return moment(this.publishedAt).format('MMMM Do YYYY');
 };
 
 Template.preferencesActivator.currentUser = UserSessionHelpers.currentUser;
