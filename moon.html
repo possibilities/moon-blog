@@ -38,7 +38,9 @@
 
 <template name="admin">
   <div class="admin">
-    {{#if currentUser}}{{currentUser}}{{/if}}
+    <span class="user">
+      {{#if currentUser}}{{currentUser}}{{/if}}
+    </span>
     <span class="controls">
       {{> preferencesActivator}}
       {{> createUserActivator}}

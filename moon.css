@@ -19,6 +19,7 @@ p {
 }
 
 p.subtitle {
+  color: grey;
   margin-left: 3.5em;
   margin-top: -10px;
   margin-bottom: 30px;
@@ -27,7 +28,7 @@ p.subtitle {
 }
 
 .story-stamp {
-  font-color: grey;
+  color: grey;
 	font-size: 13px;
 	line-height: 25px;
 	margin-bottom: 15px;
@@ -42,6 +43,10 @@ p.subtitle {
   position: absolute;
   right: 12px;
   top: 12px;
+}
+
+.admin .user {
+  color: grey;
 }
 
 .admin .controls {
