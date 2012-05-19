@@ -38,6 +38,7 @@ Template.preferencesPane.sources = function() {
 
 Template.blog.storyList = BlogHelpers.storyList;
 
+// TODO generalize these, init with simple declaration
 Handlebars.registerHelper('index', BlogHelpers.indexForStory);
 
 Handlebars.registerHelper('first', function() {
