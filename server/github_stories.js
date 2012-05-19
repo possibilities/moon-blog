@@ -51,15 +51,21 @@ GitHubStories.prototype._prepareStoryMeta = function(rawHeader) {
 GitHubStories.prototype._prepareStory = function(rawStory) {
   var markdownHeaderRE = /---(.|\n)*---/m;
   var markdownHeader = _.first(markdownHeaderRE.exec(rawStory));
-  var storyMeta = this._prepareStoryMeta(markdownHeader);
   var body = rawStory.substr(markdownHeader.length);
+  rawStory = this._prepareStoryMeta(markdownHeader);
+  
+  var commit = this._commit('stories/' + rawStory.path).commit;
 
-  return {
+  var story = {
     body: _.trim(body, '\n'),
-    publishedAt: new Date(storyMeta.date),
-    title: storyMeta.title,
-    author: 'Mike Bannister'
-  };
+    title: rawStory.title,
+    author: commit.author.name
+  }
+
+  if (rawStory.date)
+    story.publishedAt = new Date(rawStory.date);
+
+  return story;
 };
 
 GitHubStories.prototype._ref = function(ref) {
@@ -70,11 +76,19 @@ GitHubStories.prototype._tree = function(sha) {
   return this.get('repos/' + this.user + '/' + this.repo + '/git/trees/' + sha).tree;
 };
 
-GitHubStories.prototype._blob = function(sha) {
+GitHubStories.prototype._blobContent = function(sha) {
   return this.get('repos/' + this.user + '/' + this.repo + '/git/blobs/' + sha).content;
 };
 
+GitHubStories.prototype._commit = function(path) {
+  return _.first(this.get('repos/' + this.user + '/' + this.repo + '/commits', {
+    params: {
+      path: path
+    }
+  }));
+};
+
 GitHubStories.prototype._rawStory = function(sha) {
-  var content = this._blob(sha);
+  var content = this._blobContent(sha);
   return new Buffer(content, 'base64').toString();
 };

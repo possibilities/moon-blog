@@ -17,7 +17,7 @@ Meteor.publish('storySources', function() {
 });
 
 Meteor.publish('stories', function() {
-  return Stories.find();
+  return Stories.find({ publishedAt : { $exists : true } }, { sort: { publishedAt: -1 } });
 });
 
 Meteor.publish('blogs', function() {
@@ -31,18 +31,19 @@ Blog.insert({
 
 StorySources.insert({
   user: "possibilities",
-  repo: "give-me-space"
+  repo: "moon-blog-test-stories"
 });
 
 // Helpers
 
 BlogHelpers = {
   loadFromGitHub: function() {
-    var source = StorySources.findOne();
-    var blogStories = new GitHubStories(source);
-    var stories = blogStories.stories();
-    _.each(stories, function(story) {
-      Stories.insert(story);
+    StorySources.find().forEach(function(source) {
+      var blogStories = new GitHubStories(source);
+      var stories = blogStories.stories();
+      _.each(stories, function(story) {
+        Stories.insert(story);
+      });
     });
   }
 };
