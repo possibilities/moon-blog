@@ -17,7 +17,17 @@ Meteor.publish('storySources', function() {
 });
 
 Meteor.publish('stories', function() {
-  return Stories.find({ publishedAt : { $exists : true } }, { sort: { publishedAt: -1 } });
+  var query = {
+    publishedAt: {
+      $exists : true
+    }
+  };
+  var params = {
+    sort: {
+      publishedAt: -1
+    }
+  };
+  return Stories.find(query, params);
 });
 
 Meteor.publish('blogs', function() {
