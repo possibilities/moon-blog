@@ -38,9 +38,12 @@
 
 <template name="admin">
   <div class="admin">
-    {{> preferencesActivator}}
-    {{> createUserActivator}}
-    {{> createSessionActivator}}
+    {{#if currentUser}}{{currentUser}}{{/if}}
+    <span class="controls">
+      {{> preferencesActivator}}
+      {{> createUserActivator}}
+      {{> createSessionActivator}}
+    </span>
   </div>
 </template>
 

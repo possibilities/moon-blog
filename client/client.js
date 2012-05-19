@@ -32,6 +32,7 @@ Template.story.publishedAt = function() {
 };
 
 Template.preferencesActivator.currentUser = UserSessionHelpers.currentUser;
-// TODO: these should be moved out of user-sessions if they're generically userful
+Template.admin.currentUser = UserSessionHelpers.currentUser;
+// TODO: these should be moved out of user-sessions if they're generically useful
 Template.preferencesActivator.events = UserSessionHelpers.commonActivatorEvents;
 Template.preferencesPane.events = UserSessionHelpers.commonFormEvents;

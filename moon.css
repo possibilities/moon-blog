@@ -43,3 +43,7 @@ p.subtitle {
   right: 12px;
   top: 12px;
 }
+
+.admin .controls {
+  margin-left: 5px;
+}
