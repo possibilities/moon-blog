@@ -46,9 +46,12 @@ StoryHelpers = {
       _.each(stories, function(story) {
         var existingStory = Stories.findOne({ path: story.path });
         if (existingStory) {
-          Stories.remove(existingStory._id);
+          var existingStoryId = existingStory._id;
+          delete existingStory._id;
+          Stories.update(existingStoryId, { $set: story });
+        } else {
+          Stories.insert(story);
         }
-        Stories.insert(story);
       });
     });
   }
