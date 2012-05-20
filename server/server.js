@@ -70,7 +70,7 @@ var blog = Blog.findOne();
 if (!blog) {
   blog = {
     title: 'Moon',
-    subtitle: 'Welcome to the Moon blog for Meteor!'
+    subtitle: 'Welcome to the Moon Blog demo!'
   };
   Blog.insert(blog);
 }
