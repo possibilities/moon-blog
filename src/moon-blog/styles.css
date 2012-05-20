@@ -4,12 +4,12 @@ h1 {
 	font-family: 'Lobster', Georgia, Times, serif;
 	font-size: 70px;
 	line-height: 100px;
-	margin-top: 15px;
+	margin-top: 18px;
 }
  
 h2 {
 	font-family: 'Cabin', Helvetica, Arial, sans-serif;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
  
 p {
@@ -32,6 +32,10 @@ p.subtitle {
 	line-height: 25px;
 	margin-bottom: 15px;
 	margin-right: 10px;
+}
+
+.story-body p {
+  margin-bottom: 20px;
 }
 
 .clearfix {

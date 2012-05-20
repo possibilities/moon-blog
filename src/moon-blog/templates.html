@@ -20,9 +20,9 @@
   <div>
     <h2>{{title}}</h2>
   </div>
-  <p>
-    {{body}}
-  </p>
+  <div class="story-body">
+    {{#markdown}}{{body}}{{/markdown}}
+  </div>
   <p class="story-stamp pull-right">Posted <em>{{publishedAt}}</em> by <em>{{author}}</em></p>
 
   {{#unless last }}

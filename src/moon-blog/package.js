@@ -4,6 +4,7 @@ Package.describe({
 
 Package.on_use(function (api) {
   // Dependencies
+  api.use('showdown', 'client');
   api.use('templating', 'client');
   api.use('bootstrap', 'client');
   api.use('user-sessions', ['client', 'server']);

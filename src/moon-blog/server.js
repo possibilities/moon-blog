@@ -59,8 +59,6 @@ StoryHelpers = {
 
 // Load blog data
 
-StoryHelpers.loadFromGitHub();
-
 // Load stories every minute
 // TODO figure out how to use a github hook
 Meteor.setInterval(function() {
