@@ -88,12 +88,36 @@
 <template name="blogPreferences">
   <div class="formElementGroup liveEdit" data-live-edit-method="updateBlog">
     <div id="blogNameField" class="control-group">
-      <label>Blog name</label>
-      <input id="blogTitle" name="title" type="text" class="span3 entry focus" placeholder="Your blog's name…" value="{{#if title}}{{title}}{{/if}}">
+      <label>Title</label>
+      <div class="pull-left">
+        <input id="blogTitle" name="title" type="text" class="span3 entry focus" placeholder="Your blog's name…" value="{{title}}">
+      </div>
+      {{#if loading "blogTitle" }}
+        <div class="spinner pull-left">
+          <img src="spinner.gif" />
+        </div>
+      {{/if}}
+      {{#if saved "blogTitle" }}
+        <div class="saved pull-left">
+          <i class="icon-ok"></i>
+        </div>
+      {{/if}}
     </div>
-    <div id="blogSubtitleField" class="control-group">
+    <div id="blogSubtitleField" class="control-group clearfix">
       <label>Subtitle</label>
-      <input id="subtitleName" name="subtitle" type="text" class="span3 entry" placeholder="Your blog's subtitle…" value="{{subtitle}}">
+      <div class="pull-left">
+        <input id="blogSubtitle" name="subtitle" type="text" class="span3 entry" placeholder="Your blog's subtitle…" value="{{subtitle}}">
+    </div>
+      {{#if loading "blogSubtitle" }}
+        <div class="spinner pull-left">
+          <img src="spinner.gif" />
+        </div>
+      {{/if}}
+      {{#if saved "blogSubtitle" }}
+        <div class="saved pull-left">
+          <i class="icon-ok"></i>
+        </div>
+      {{/if}}
     </div>
   </div>
 </template>
