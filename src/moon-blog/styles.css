@@ -51,3 +51,11 @@ p.subtitle {
 .admin .controls {
   margin-left: 5px;
 }
+
+/*
+  Mess with bootstrap to get the right width
+  TODO should be able to change the less variables and let meteor recompile, right?
+*/
+.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+  width: 750px;
+}
