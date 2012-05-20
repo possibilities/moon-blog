@@ -11,12 +11,8 @@
 
 <template name="blog">
   <div class="container">
-    {{#if blog}}
-      {{#with blog}}
-        <h1>{{title}}</h1>
-        <p class="subtitle">{{subtitle}}</p>
-      {{/with}}
-    {{/if}}
+    <h1>{{title}}</h1>
+    <p class="subtitle">{{subtitle}}</p>
 
     {{#each storyList}}
       {{> story}}
@@ -71,18 +67,7 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab1">
-              <div class="formElementGroup">
-                {{#with blog}}
-                  <div id="blogNameField" class="control-group">
-                    <label>Blog name</label>
-                    <input id="blogTitle" name="blogTitle" type="text" class="span3 entry focus" placeholder="Your blog's name…" value="{{title}}">
-                  </div>
-                  <div id="blogSubtitleField" class="control-group">
-                    <label>Subtitle</label>
-                    <input id="subtitleName" name="subtitleName" type="text" class="span3 entry" placeholder="Your blog's subtitle…" value="{{subtitle}}">
-                  </div>
-                {{/with}}
-              </div>
+              {{> blogPreferences}}
             </div>
             <div class="tab-pane" id="tab2">
               <h3>GitHub Sources</h3>
@@ -97,5 +82,18 @@
         <a class="btn" data-dismiss="modal">Done</a>
       </div>
     </form>
+  </div>
+</template>
+
+<template name="blogPreferences">
+  <div class="formElementGroup liveEdit" data-live-edit-method="updateBlog">
+    <div id="blogNameField" class="control-group">
+      <label>Blog name</label>
+      <input id="blogTitle" name="title" type="text" class="span3 entry focus" placeholder="Your blog's name…" value="{{#if title}}{{title}}{{/if}}">
+    </div>
+    <div id="blogSubtitleField" class="control-group">
+      <label>Subtitle</label>
+      <input id="subtitleName" name="subtitle" type="text" class="span3 entry" placeholder="Your blog's subtitle…" value="{{subtitle}}">
+    </div>
   </div>
 </template>

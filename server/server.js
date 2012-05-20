@@ -8,8 +8,6 @@ Secure.noDataMagic('storySources');
 Secure.noDataMagic('stories');
 Secure.noDataMagic('blogs');
 
-StorySources.remove({});
-
 Meteor.publish('storySources', function() {
   return StorySources.find();
 });
@@ -32,11 +30,7 @@ Meteor.publish('blogs', function() {
   return Blog.find();
 });
 
-Blog.insert({
-  title: "Give Me Space!",
-  subtitle: "Mike Bannister's Meteor Blog"
-});
-
+StorySources.remove({});
 StorySources.insert({
   user: "possibilities",
   repo: "moon-blog-test-stories"
@@ -44,7 +38,7 @@ StorySources.insert({
 
 // Helpers
 
-BlogHelpers = {
+StoryHelpers = {
   loadFromGitHub: function() {
     StorySources.find().forEach(function(source) {
       var blogStories = new GitHubStories(source);
@@ -62,10 +56,33 @@ BlogHelpers = {
 
 // Load blog data
 
-BlogHelpers.loadFromGitHub();
+StoryHelpers.loadFromGitHub();
 
 // Load stories every minute
 // TODO figure out how to use a github hook
 Meteor.setInterval(function() {
-  BlogHelpers.loadFromGitHub();
+  StoryHelpers.loadFromGitHub();
 }, (60 * 1000));
+
+// Global reference to the blog object
+var blog = Blog.findOne();
+// Make one if we don't have one
+if (!blog) {
+  blog = {
+    title: 'Moon',
+    subtitle: 'Welcome to the Moon blog for Meteor!'
+  };
+  Blog.insert(blog);
+}
+// Cache the id globally also
+var blogId = blog._id;
+
+Meteor.methods({
+  updateBlog: function(key, val) {
+    var setValues = {};
+    setValues[key] = val;
+    Blog.update(blogId, {
+      $set: setValues
+    });
+  }
+});
