@@ -44,7 +44,7 @@ Template.blog.subtitle = BlogHelpers.subtitle;
 Template.blogPreferences.title = BlogHelpers.title;
 Template.blogPreferences.subtitle = BlogHelpers.subtitle;
 
-Template.preferencesPane.sources = function() {
+Template.storySourcePreferences.sources = function() {
   return StorySources.find();
 };
 
@@ -66,9 +66,15 @@ Template.story.publishedAt = function() {
   return moment(this.publishedAt).format('MMMM Do YYYY');
 };
 
+Template.preferencesPane.events = {
+  'click #githubStoriesButton': function(e) {
+    e.preventDefault();
+  }
+};
+
 // We need current user in some places
 Template.preferencesActivator.currentUser = UserSessionHelpers.currentUser;
 Template.admin.currentUser = UserSessionHelpers.currentUser;
 // Attach UI helpers to activators and modals
 Template.preferencesActivator.events = UIHelpers.activatorEvents;
-Template.preferencesPane.events = UIHelpers.formEvents;
+_.extend(Template.preferencesPane.events, UIHelpers.formEvents);

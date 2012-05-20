@@ -30,12 +30,6 @@ Meteor.publish('blogs', function() {
   return Blog.find();
 });
 
-StorySources.remove({});
-StorySources.insert({
-  user: "possibilities",
-  repo: "moon-blog-test-stories"
-});
-
 // Helpers
 
 StoryHelpers = {
@@ -61,9 +55,10 @@ StoryHelpers = {
 
 // Load stories every minute
 // TODO figure out how to use a github hook
+StoryHelpers.loadFromGitHub()
 Meteor.setInterval(function() {
   StoryHelpers.loadFromGitHub();
-}, (60 * 1000));
+}, (30 * 1000));
 
 // Global reference to the blog object
 var blog = Blog.findOne();
@@ -85,5 +80,11 @@ Meteor.methods({
     Blog.update(blogId, {
       $set: setValues
     });
+  },
+  createStorySource: function(storySource) {
+    StorySources.insert(storySource);
+  },
+  deleteStorySource: function(storySourceId) {
+    StorySources.remove(storySourceId);
   }
 });

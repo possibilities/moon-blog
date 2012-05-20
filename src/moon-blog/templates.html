@@ -52,33 +52,52 @@
 
 <template name="preferencesPane">
   <div id="preferencesPane" class="modal hide fade">
-    <form style="display:inline" class="sessionForm">
-      <div class="modal-body">
-        <input name="csrfToken" type="hidden" value="TODO">
-        <button class="close" data-dismiss="modal">×</button>
-        <div class="tabbable">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">Blog</a></li>
-            <li><a href="#tab2" data-toggle="tab">Sources</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-              {{> blogPreferences}}
-            </div>
-            <div class="tab-pane" id="tab2">
-              <h3>GitHub Sources</h3>
-              {{#each sources}}
-                <p><em>{{user}}</em>/<strong>{{repo}}</strong></p>
-              {{/each}}
-            </div>
+    <div class="modal-body">
+      <input name="csrfToken" type="hidden" value="TODO">
+      <button class="close" data-dismiss="modal">×</button>
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">Blog</a></li>
+          <li><a href="#tab2" data-toggle="tab">Stories</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab1">
+            {{> blogPreferences}}
+          </div>
+          <div class="tab-pane" id="tab2">
+            {{> storySourcePreferences}}
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <a class="btn" data-dismiss="modal">Done</a>
-      </div>
-    </form>
+    </div>
+    <div class="modal-footer">
+      <a class="btn" data-dismiss="modal">Done</a>
+    </div>
   </div>
+</template>
+
+<template name="storySourcePreferences">
+  <form style="display:inline" data-method-name="createStorySource">
+    <div class="formElementGroup inlineElementGroup">
+      <h3>Add a story source</h3>
+      <div class="control-group pull-left">
+        <label>User</label>
+        <input id="githubUserField" name="user" type="text" class="span3 entry focus" placeholder="Github username…">
+      </div>
+      <div class="control-group pull-left">
+        <label>Repo</label>
+        <input id="githubRepoField" name="repo" type="text" class="span3 entry" placeholder="Github repo…">
+      </div>
+      <div class="control-group">
+        <label>&nbsp;</label>
+        <input id="githubStoriesButton" type="submit" value="Add!" class="btn" />
+      </div>
+      <h3 class="clearfix">Story sources</h3>
+      {{#each sources}}
+        <p><em>{{user}}</em>/<strong>{{repo}}</strong></p>
+      {{/each}}
+    </div>
+  </form>
 </template>
 
 <template name="blogPreferences">

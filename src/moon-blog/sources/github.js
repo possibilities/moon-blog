@@ -11,11 +11,17 @@ _.extend(GitHubStories.prototype, Party.prototype);
 
 GitHubStories.prototype.stories = function(ref) {
   ref = ref || 'master';
-  var sha = this._ref(ref).sha;
-  var rootTree = this._tree(sha);
-  var rawStories = this._storiesForTree(rootTree);
-  var stories = this._prepareStories(rawStories);
-  return stories;
+  var ref = this._ref(ref);
+  if (ref) {
+    var sha = ref.sha;
+    var rootTree = this._tree(sha);
+    var rawStories = this._storiesForTree(rootTree);
+    var stories = this._prepareStories(rawStories);
+    return stories;
+  } else {
+    console.log('found nothing');
+    return [];
+  }
 };
 
 GitHubStories.prototype._storiesForTree = function(dirTree) {
