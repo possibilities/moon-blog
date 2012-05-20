@@ -45,7 +45,11 @@ Template.blogPreferences.title = BlogHelpers.title;
 Template.blogPreferences.subtitle = BlogHelpers.subtitle;
 
 Template.storySourcePreferences.sources = function() {
-  return StorySources.find();
+  return StorySources.find({}, {
+    sort: {
+      createdAtStamp: -1
+    }
+  });
 };
 
 Template.blog.storyList = StoryHelpers.list;
@@ -66,9 +70,13 @@ Template.story.publishedAt = function() {
   return moment(this.publishedAt).format('MMMM Do YYYY');
 };
 
-Template.preferencesPane.events = {
-  'click #githubStoriesButton': function(e) {
-    e.preventDefault();
+Template.storySourcePreferences.events = {
+  'click .delete-story-source': function(e) {
+    if (!confirm("Are you sure?"))
+      return false;
+
+    var id = $(e.currentTarget).data('story-source-id');
+    Meteor.call('deleteStorySource', id);
   }
 };
 
@@ -77,4 +85,4 @@ Template.preferencesActivator.currentUser = UserSessionHelpers.currentUser;
 Template.admin.currentUser = UserSessionHelpers.currentUser;
 // Attach UI helpers to activators and modals
 Template.preferencesActivator.events = UIHelpers.activatorEvents;
-_.extend(Template.preferencesPane.events, UIHelpers.formEvents);
+Template.preferencesPane.events = UIHelpers.formEvents;

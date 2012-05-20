@@ -18,9 +18,6 @@ GitHubStories.prototype.stories = function(ref) {
     var rawStories = this._storiesForTree(rootTree);
     var stories = this._prepareStories(rawStories);
     return stories;
-  } else {
-    console.log('found nothing');
-    return [];
   }
 };
 

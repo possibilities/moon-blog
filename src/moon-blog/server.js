@@ -82,6 +82,8 @@ Meteor.methods({
     });
   },
   createStorySource: function(storySource) {
+    storySource.createdAt = new Date();
+    storySource.createdAtStamp = storySource.createdAt.getTime();
     StorySources.insert(storySource);
   },
   deleteStorySource: function(storySourceId) {
