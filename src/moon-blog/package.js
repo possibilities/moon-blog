@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "Attach users to client-sessions"
+  summary: "A blog smart package from outer space"
 });
 
 Package.on_use(function (api) {

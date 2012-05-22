@@ -1,8 +1,8 @@
-# Moon Blog
+# Moon Blog for Meteor
+
+A blog smart package from outer space
 
 ## TODO
-
-Figure out how to get rid of bootstrap img symlink
 
 Show unpublished stories somewhere
 
