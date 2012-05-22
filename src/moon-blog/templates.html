@@ -111,9 +111,7 @@
         <input id="blogTitle" name="title" type="text" class="span3 entry focus" placeholder="Your blog's name…" value="{{title}}">
       </div>
       {{#if loading "blogTitle" }}
-        <div class="spinner pull-left">
-          <img src="spinner.gif" />
-        </div>
+        <span class="pull-left spinner" />
       {{/if}}
       {{#if saved "blogTitle" }}
         <div class="saved pull-left">
@@ -127,9 +125,7 @@
         <input id="blogSubtitle" name="subtitle" type="text" class="span3 entry" placeholder="Your blog's subtitle…" value="{{subtitle}}">
     </div>
       {{#if loading "blogSubtitle" }}
-        <div class="spinner pull-left">
-          <img src="spinner.gif" />
-        </div>
+        <span class="pull-left spinner" />
       {{/if}}
       {{#if saved "blogSubtitle" }}
         <div class="saved pull-left">

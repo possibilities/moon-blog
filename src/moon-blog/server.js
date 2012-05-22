@@ -73,7 +73,7 @@ if (!blog) {
 // Cache the id globally also
 var blogId = blog._id;
 
-Meteor.methods({
+var blogMethods = {
   updateBlog: function(key, val) {
     var setValues = {};
     setValues[key] = val;
@@ -89,4 +89,8 @@ Meteor.methods({
   deleteStorySource: function(storySourceId) {
     StorySources.remove(storySourceId);
   }
-});
+};
+
+Meteor.methods(
+  UserSessionFilters.addTo(blogMethods)
+);
