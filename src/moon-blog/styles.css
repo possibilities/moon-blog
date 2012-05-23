@@ -21,16 +21,20 @@ p {
 p.subtitle {
   color: grey;
   margin-top: -10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 	font-size: 15px;
 	font-style: italic;
+}
+
+hr {
+  margin-bottom: 30px;
 }
 
 .story-stamp {
   color: grey;
 	font-size: 13px;
 	line-height: 25px;
-	margin-bottom: 15px;
+	margin-bottom: 0px;
 	margin-right: 10px;
 }
 
@@ -54,12 +58,4 @@ p.subtitle {
 
 .admin .controls {
   margin-left: 5px;
-}
-
-/*
-  Mess with bootstrap to get the right width
-  TODO should be able to change the less variables and let meteor recompile, right?
-*/
-.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-  width: 750px;
 }

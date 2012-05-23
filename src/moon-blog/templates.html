@@ -7,9 +7,13 @@
 
 <template name="blog">
   <div class="container">
-    <h1>{{title}}</h1>
-    <p class="subtitle">{{subtitle}}</p>
-
+    <div class="row">
+      <div class="span2"><!-- shim -->&nbsp;</div>
+      <div class="span10">
+        <h1>{{title}}</h1>
+        <p class="subtitle">{{subtitle}}</p>
+      </div>
+    </div>
     {{#each storyList}}
       {{> story}}
     {{/each}}
@@ -17,17 +21,29 @@
 </template>
 
 <template name="story">
-  <div>
-    <h2>{{title}}</h2>
+  <div class="row">
+    <div class="span1"><!-- shim -->&nbsp;</div>
+    <div class="span10">
+      <hr class="clearfix" />
+    </div>
+    <div class="span1"><!-- shim -->&nbsp;</div>
   </div>
-  <div class="story-body">
-    {{#markdown}}{{{body}}}{{/markdown}}
+  <div class="row">
+    <div class="span2"><!-- shim -->&nbsp;</div>
+    <div class="span6">
+      <div>
+        <h2>{{title}}</h2>
+      </div>
+      <div class="story-body">
+        {{#markdown}}{{{body}}}{{/markdown}}
+      </div>
+    </div>
+    <div class="span2">
+      <p class="story-stamp">Posted <em>{{publishedAt}}</em></p>
+      <p class="story-stamp">By <em>{{author}}</em></p>
+    </div>
+    <div class="span2"><!-- shim -->&nbsp;</div>
   </div>
-  <p class="story-stamp pull-right">Posted <em>{{publishedAt}}</em> by <em>{{author}}</em></p>
-
-  {{#unless last }}
-    <hr class="clearfix" />
-  {{/unless}}
 </template>
 
 <template name="admin">
