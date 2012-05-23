@@ -81,8 +81,8 @@ Template.storySourcePreferences.events = {
 };
 
 // We need current user in some places
-Template.preferencesActivator.currentUser = UserSessionHelpers.currentUser;
-Template.admin.currentUser = UserSessionHelpers.currentUser;
+Template.preferencesActivator.currentUser = UserSession.currentUser;
+Template.admin.currentUser = UserSession.currentUser;
 // Attach UI helpers to activators and modals
 Template.preferencesActivator.events = UIHelpers.activatorEvents;
 Template.preferencesPane.events = UIHelpers.formEvents;
